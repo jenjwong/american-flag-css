@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Murica</title>
+  </head>
+  <body>
+  <style>
+
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .flag {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+  }
+  .flag__upper-left {
+    flex: 1 1 35%;
+    background-color: blue;
+  }
+
+  .flag__upper-left .star-container:nth-child(even) {
+    background-color: pink;
+  }
+
+  .flag__upper-right {
+    flex: 1 1 65%;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+  }
+  .flag__lower {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .stripes {
+    flex: 1;
+  }
+
+  .flag__lower .stripes:nth-child(even) {
+    background-color: red;
+  }
+
+  .flag__upper-right .stripes:nth-child(odd) {
+    background-color: red;
+  }
+
+  .star-container {
+    width: 100%;
+    flex: 1;
+  }
+
+  /*.star {
+    background-image: url("http://img.clipartall.com/yellow-star-picture-clipart-yellow-star-clipart-700_700.png");
+    background-size: 50%;
+  }*/
+
+  </style>
+    <div class="flag">
+      <div class="flag__upper-left"></div>
+      <div class="flag__upper-right"></div>
+      <div class="flag__lower"></div>
+    </div>
+
+  <script>
+  function makeStripes(num) {
+    let stripes = [];
+    for (let i = 0; i < num; i++) {
+      if (i % 2 === 0) {
+        stripes = [...stripes,`<div class=stripes></div>`]
+      } else {
+        stripes = [...stripes, `<div class=stripes></div>`]
+      }
+    }
+    return stripes.join('');
+  }
+
+  function makeStars(num) {
+    let stars = [];
+    let currentStars=[];
+    for (let i = 0; i < num; i++) {
+      if (i % 5 === 0 && i !== 0) {
+        stars = [...stars, `<div class="star-container">${currentStars.join('')}</div>`]
+      } else {
+        currentStars = [...currentStars, '<div class="star"></div>']
+      }
+    }
+    return stars.join('');
+  }
+
+  console.log(makeStars(50))
+
+  const lowerHalf = document.querySelector('.flag__lower');
+  const lowerHalfStripes = makeStripes(6);
+  lowerHalf.innerHTML = lowerHalfStripes;
+
+  const upperRight = document.querySelector('.flag__upper-right');
+  const upperRightStripes = makeStripes(7);
+  upperRight.innerHTML = upperRightStripes;
+
+  const upperLeft = document.querySelector('.flag__upper-left');
+  const upperLeftStars = makeStars(50);
+  upperLeft.innerHTML = upperLeftStars;
+
+  </script>
+
+  </body>
+</html>
