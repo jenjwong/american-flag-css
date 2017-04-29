@@ -6,7 +6,6 @@
   </head>
   <body>
   <style>
-
   html, body {
     margin: 0;
     padding: 0;
@@ -23,27 +22,27 @@
   .flag__upper-left {
     box-sizing: border-box;
     padding: 1vw;
-    flex: 1 1 35%;
+    flex: 1 1 45%;
     background-color: blue;
     display: flex;
     flex-direction: column;
-    max-width: 33vw;
     height: 55vh;
   }
 
   .flag__upper-right {
-    flex: 1 1 65%;
+    flex: 1 1 55%;
     display: flex;
     flex-direction: column;
-    width: 50vw;
     height: 55vh;
   }
+
   .flag__lower {
     flex: 1 1 100%;
     display: flex;
     flex-direction: column;
     height: 45vh;
   }
+
   .stripes {
     flex: 1;
   }
@@ -76,9 +75,6 @@
     content: '★';
     color: gold;
   }
-
-
-
   </style>
     <div class="flag">
       <div class="flag__upper-left"></div>
@@ -90,11 +86,7 @@
   function makeStripes(num) {
     let stripes = [];
     for (let i = 0; i < num; i++) {
-      if (i % 2 === 0) {
-        stripes = [...stripes,`<div class=stripes></div>`]
-      } else {
-        stripes = [...stripes, `<div class=stripes></div>`]
-      }
+      stripes = [...stripes, `<div class=stripes></div>`]
     }
     return stripes.join('');
   }
@@ -103,17 +95,14 @@
     let stars = [];
     let currentStars=[];
     for (let i = 0; i < num; i++) {
+      currentStars = [...currentStars, '<div class="star"></div>'];
       if (i % 14 === 0 && i !== 0) {
-        currentStars = [...currentStars, '<div class="star"></div>'];
         stars = [...stars, `<div class="star-container">${currentStars.join('')}</div>`];
         currentStars = [];
-      } else {
-        currentStars = [...currentStars, '<div class="star"></div>'];
       }
     }
     return stars.join('');
   }
-
 
   const lowerHalf = document.querySelector('.flag__lower');
   const lowerHalfStripes = makeStripes(6);
@@ -123,6 +112,7 @@
   const upperRightStripes = makeStripes(7);
   upperRight.innerHTML = upperRightStripes;
 
+// 100 divs are created so that we can make 50 offset stars
   const upperLeft = document.querySelector('.flag__upper-left');
   const upperLeftStars = makeStars(100);
   upperLeft.innerHTML = upperLeftStars;
